@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -36,5 +37,23 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+    public function login(Request $request)
+    {
+        $credentials = $request->only('email', 'password');
+
+        if (auth()->attempt($credentials)) {
+            // Jika autentikasi berhasil
+            if (auth()->user()->role == 'Admin') {
+                return redirect()->route('listobat'); // Ganti dengan rute yang sesuai untuk halaman admin
+            } elseif (auth()->user()->role == 'Kasir') {
+                return redirect()->route('kasir.homekasir'); // Ganti dengan rute yang sesuai untuk halaman kasir
+            }
+        }
+
+        // Jika autentikasi gagal
+        return redirect()->route('login')->withErrors([
+            'email' => 'These credentials do not match our records.',
+        ]);
     }
 }
