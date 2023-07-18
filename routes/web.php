@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DataobatController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PenggunaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -39,6 +40,8 @@ Route::middleware(['auth', 'Kasir'])->group(function () {
     Route::get('/homekasir', function () {
         return view('kasir.homekasir');
     })->name('kasir.homekasir');
+    Route::get('/homekasir', [KasirController::class, 'index'])->name('homekasir');
+    Route::resource('dataobat', KasirController::class);
 });
 
 
