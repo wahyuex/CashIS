@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container">
-        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data Master</a>
+        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"><img class="img-fluid" src="{{ Vite::asset('resources/images/logo.jpeg') }}" alt="logo" style="width: 40px;" Data Master</a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
