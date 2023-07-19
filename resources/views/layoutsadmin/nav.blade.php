@@ -4,7 +4,7 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container">
-        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"><img class="img-fluid" src="{{ Vite::asset('resources/images/logo.jpeg') }}" alt="logo" style="width: 40px;" Data Master</a>
+        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1">Data Master Obat</a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -14,8 +14,8 @@
             <hr class="d-md-none text-white-50">
 
             <ul class="navbar-nav flex-row flex-wrap">
-                <li class="nav-item col-2 col-md-auto"><a href="{{ route('dataobat.index') }}"
-                        class="nav-link @if ($currentRouteName == 'dataobat.index') active @endif">Data Obat</a></li>
+                <li class="nav-item col-2 col-md-auto"><a href="{{ route('listobat') }}"
+                        class="nav-link @if ($currentRouteName == 'listobat') active @endif">Data Obat</a></li>
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('pengguna.index') }}"
                         class="nav-link @if ($currentRouteName == 'pengguna.index') active @endif">Pengguna</a></li>
             </ul>
