@@ -20,9 +20,9 @@
                     </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.create') }}" class="btn btn-primary">
-                            <i class="bi bi-plus-circle me-1"></i> Create Employee
-                        </a> --}}
+                        <a href="{{ route('dataobat.create') }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i> Tambah Obat
+                        </a>
                     </li>
                 </ul>
             </div>
