@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Listobat;
+use App\Models\outreports;
 use Illuminate\Http\Request;
 
-class DataobatController extends Controller
+class ReportoutController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $pageTitle = 'List Obat';
-
-        // ELOQUENT
-        $listobats = Listobat::all();
-        return view('admin.dataobat.index', [
+        $pageTitle = 'Employee List';
+        // confirmDelete();
+        $reportouts = outreports::all();
+        return view('admin.laporankeluar.index', [
             'pageTitle' => $pageTitle,
-            'listobats' => $listobats
+            'reportouts' => $reportouts
         ]);
     }
 
@@ -27,9 +26,7 @@ class DataobatController extends Controller
      */
     public function create()
     {
-        $pageTitle = 'Buat Obat';
-
-        return view('admin.dataobat.create', compact('pageTitle'));
+        //
     }
 
     /**

@@ -51,7 +51,7 @@
                             <td>{{ $listobat->harga }}</td>
                             <td>{{ $listobat->stock }}</td>
                             <td>{{ $listobat->kategori }}</td>
-                            <td>{{ $listobat->satuan_id }}</td>
+                            <td>{{ $listobat->satuan->name_satuan }}</td>
                             <td class="text-center">
                                 <div class="d-flex text-center">
                                     <a href=""

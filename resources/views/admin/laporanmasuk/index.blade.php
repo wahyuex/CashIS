@@ -9,9 +9,9 @@
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportExcel') }}" class="btn btn-outline-success">
-                            <i class="bi bi-download me-1"></i> to Excel
-                        </a> --}}
+                        <a href="{{ route('laporanmasuk.create') }}" class="btn btn-outline-danger">
+                            <i class="bi bi-download me-1"></i> Tambah Stock
+                        </a>
                     </li>
                     <li class="list-inline-item">
                         {{-- <a href="{{ route('admin.exportPdf') }}" class="btn btn-outline-danger">
@@ -32,15 +32,31 @@
             <table class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>No.</th>
-                        <th>First Name</th>
-                        <th>Last Name</th>
-                        <th>Email</th>
-                        <th>Age</th>
-                        <th>Position</th>
-                        <th></th>
+                        <th>tanggal</th>
+                        <th>kode_produk</th>
+                        <th>nama_produk</th>
+                        <th>harga_satuan</th>
+                        <th>satuan_obat</th>
+                        <th>jumlah_masuk</th>
+                        <th>pemasok</th>
+                        <th>total_harga</th>
                     </tr>
+                    <tbody>
+                        @foreach ($reportins as $reportin)
+                            <tr class="text-center">
+                                <td>{{ $reportin->id }}</td>
+                                <td>{{ $reportin->tanggal }}</td>
+                                <td>{{ $reportin->kode_produk }}</td>
+                                <td>{{ $reportin->nama_produk }}</td>
+                                <td>{{ $reportin->harga_satuan }}</td>
+                                <td>{{ $reportin->satuan->name_satuan}}</td>
+                                <td>+{{ $reportin->jumlah_masuk }}</td>
+                                <td>{{ $reportin->pemasok }}</td>
+                                <td>{{ $reportin->total_harga }}</td>
+                            </tr>
+                        @endforeach
+                    </tbody>
                 </thead>
             </table>
         </div>
