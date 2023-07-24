@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Role;
+use App\Models\Users;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class PenggunaController extends Controller
 {
@@ -12,8 +15,13 @@ class PenggunaController extends Controller
     public function index()
     {
         $pageTitle = 'Pengguna';
-        // confirmDelete();
-        return view('admin.pengguna.index', compact('pageTitle'));   
+
+        // ELOQUENT
+        $users = Users::all();
+        return view('admin.pengguna.index', [
+            'pageTitle' => $pageTitle,
+            'users' => $users
+        ]);
     }
 
     /**
@@ -21,7 +29,11 @@ class PenggunaController extends Controller
      */
     public function create()
     {
-        //
+        $pageTitle = 'Create Pengguna';
+
+        // ELOQUENT
+        $roles = Role::all();
+        return view('admin.pengguna.create', compact('pageTitle', 'roles'));
     }
 
     /**
@@ -29,8 +41,43 @@ class PenggunaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':attribute harus diisi.',
+            'unique' => ':attribute sudah digunakan.',
+            'numeric' => 'Isi :attribute dengan angka.'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'role_id' => 'required|exists:roles,id',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+        // Hash the password
+        // $hashedPassword = bcrypt($validatedData['password']);
+        // Hash the password
+        // Pastikan kode untuk menyimpan data
+        $pengguna = new Users;
+        $pengguna->name = $request->name;
+        $pengguna->email = $request->email;
+        $pengguna->password = bcrypt($request->password);
+        $pengguna->role_id = $request->role_id;
+
+        // Tambahkan pesan untuk pengecekan
+        if ($pengguna->save()) {
+            // Data berhasil disimpan
+            return redirect()->route('pengguna.index')->with('success', 'Data pengguna berhasil disimpan.');
+        } else {
+            // Data gagal disimpan
+            return redirect()->route('admin.pengguna.index')->with('error', 'Gagal menyimpan data pengguna.');
+        }
+
     }
+
 
     /**
      * Display the specified resource.
@@ -45,7 +92,13 @@ class PenggunaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'Edit Pengguna';
+
+        $roles = Role::all();
+        $users = Users::find($id);
+
+
+        return view('pengguna.edit', compact('pageTitle', 'users', 'roles'));
     }
 
     /**
@@ -61,6 +114,8 @@ class PenggunaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Users::find($id)->delete();
+
+        return redirect()->route('pengguna.index');
     }
 }

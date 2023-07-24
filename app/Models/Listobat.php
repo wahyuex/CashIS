@@ -12,4 +12,8 @@ class Listobat extends Model
     {
         return $this->belongsTo(Satuan::class);
     }
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
 }
