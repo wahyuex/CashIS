@@ -1,7 +1,10 @@
 <?php
 
 use App\Http\Controllers\DataobatController;
+use App\Http\Controllers\KasirController;
 use App\Http\Controllers\PenggunaController;
+use App\Http\Controllers\ReportinController;
+use App\Http\Controllers\ReportoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -33,12 +36,16 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     // Route::resource('kasir', KasirController::class);
     // Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
     Route::resource('pengguna',PenggunaController::class);
+    Route::resource('laporanmasuk',ReportinController::class);
+    Route::resource('laporankeluar',ReportoutController::class);
 });
 
 Route::middleware(['auth', 'Kasir'])->group(function () {
-    Route::get('/homekasir', function () {
-        return view('kasir.homekasir');
-    })->name('kasir.homekasir');
+    Route::get('/homekasir', [KasirController::class, 'index'])->name('homekasir');
+    Route::post('/add-to-cart', [KasirController::class, 'addToCart'])->name('add-to-cart');
+    Route::post('/checkout', [KasirController::class, 'checkout'])->name('checkout');
+    Route::get('/cart', [KasirController::class, 'showCart'])->name('cart');
 });
+
 
 

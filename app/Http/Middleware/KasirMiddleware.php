@@ -15,7 +15,7 @@ class KasirMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->check() && auth()->user()->role == 'Kasir') {
+        if (auth()->check() && auth()->user()->role_id == '2') {
             return $next($request);
         }
         return redirect('/'); // Ganti dengan rute atau URL yang sesuai jika pengguna bukan kasir
