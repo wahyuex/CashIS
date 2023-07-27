@@ -28,6 +28,10 @@ class DataobatController extends Controller
     public function create()
     {
 
+        $pageTitle = 'Create Dataobat';
+
+        return view('admin.dataobat.create', compact('pageTitle'));
+
         $pageTitle = 'Buat Obat';
 
         return view('admin.dataobat.create', compact('pageTitle'));
