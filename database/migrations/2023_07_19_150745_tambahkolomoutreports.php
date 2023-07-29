@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        // Schema::create('inreports', function (Blueprint $table) {
-        //     $table->id();
-        //     $table->string('tanggal');
-        //     $table->string('kode_produk');
-        //     $table->string('nama_produk');
-        //     $table->string('jumlah_masuk');
-        //     $table->string('harga_satuan');
-        //     $table->string('pemasok');
-        //     $table->string('total_harga');
-        //     $table->timestamps();
-        // });
+        Schema::create('inreports', function (Blueprint $table) {
+            $table->id();
+            $table->string('tanggal');
+            $table->string('kode_produk');
+            $table->string('nama_produk');
+            $table->string('jumlah_masuk');
+            $table->string('harga_satuan');
+            $table->string('pemasok');
+            $table->string('total_harga');
+            $table->timestamps();
+        });
         Schema::table('outreports', function (Blueprint $table) {
             $table->string('satuan_obat')->after('harga_satuan')->nullable();
         });
