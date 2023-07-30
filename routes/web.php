@@ -35,9 +35,9 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::resource('dataobat', DataobatController::class);
     // Route::resource('kasir', KasirController::class);
     // Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
-    Route::resource('pengguna',PenggunaController::class);
-    Route::resource('laporanmasuk',ReportinController::class);
-    Route::resource('laporankeluar',ReportoutController::class);
+    Route::resource('pengguna', PenggunaController::class);
+    Route::resource('laporanmasuk', ReportinController::class);
+    Route::resource('laporankeluar', ReportoutController::class);
 });
 
 Route::middleware(['auth', 'Kasir'])->group(function () {
@@ -48,4 +48,6 @@ Route::middleware(['auth', 'Kasir'])->group(function () {
 });
 
 
+Route::get('exportExcel', [EmployeeController::class, 'exportExcel'])->name('employees.exportExcel');
 
+Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');

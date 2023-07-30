@@ -6,6 +6,9 @@ use App\Models\inreports;
 use App\Models\Listobat;
 use App\Models\Satuan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LaporanmasukExport;
+use PDF;
 
 class ReportinController extends Controller
 {
@@ -27,16 +30,17 @@ class ReportinController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   $pageTitle = 'Employee';
+    {
+        $pageTitle = 'Employee';
         $satuan = Satuan::all();
-        return view('admin.laporanmasuk.tambahstock',compact('pageTitle','satuan'));
+        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $pageTitle = 'Employee';
         $request->validate([
             'kode_produk' => 'required|string',
@@ -108,5 +112,19 @@ class ReportinController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function exportExcel()
+    {
+        return Excel::download(new LaporanmasukExport, 'laporanmasuks.xlsx');
+    }
+
+    public function exportPdf()
+    {
+        $employees = LaporanmasukExport::all();
+
+        $pdf = PDF::loadView('laporanmasuk.export_pdf', compact('laporanmasuks'));
+
+        return $pdf->download('laporanmasuks.pdf');
     }
 }
