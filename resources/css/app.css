@@ -1,0 +1,10 @@
+/* CSS untuk tampilan landscape */
+@media screen and (orientation: landscape) {
+    .accordion {
+      display: flex;
+    }
+    .card {
+      flex: 1;
+      margin-right: 10px; /* Ruang antara kedua tampilan */
+    }
+  }
