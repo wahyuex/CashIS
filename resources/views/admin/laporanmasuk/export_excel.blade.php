@@ -9,16 +9,17 @@
             <th>Total Stok</th>
         </tr>
     </thead>
-    {{-- <tbody>
-        @foreach ($employees as $index => $employee)
+    <tbody>
+        @foreach ($listobat as $index => $listobat)
             <tr>
                 <td>{{ $index + 1 }}</td>
-                <td>{{ $employee->firstname }}</td>
-                <td>{{ $employee->lastname }}</td>
-                <td>{{ $employee->email }}</td>
-                <td>{{ $employee->age }}</td>
-                <td>{{ $employee->position->name }}</td>
+                <td>{{ $listobat->kode }}</td>
+                <td>{{ $listobat->namabarang }}</td>
+                <td>{{ $listobat->barangmasuk }}</td>
+                <td>{{ $listobat->barangkeluar }}</td>
+                <td>{{ $listobat->sisastok }}</td>
+                <td>{{ $listobat->totalstok }}</td>
             </tr>
         @endforeach
-    </tbody> --}}
+    </tbody>
 </table>

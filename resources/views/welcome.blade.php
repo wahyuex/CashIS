@@ -15,7 +15,7 @@
         <div class="container">
             <a class="navbar-brand" href="#">
                 <img href="#" class="fw-bold"><img src="{{ Vite::asset('resources/images/logo.png') }}"
-                    alt="image" width=20%>
+                    alt="image" width=100px>
             </a>
             <a class="nav-link active fs-3 fw-bold" aria-current="page" href="{{ route('login') }}"><i
                     class="bi bi-box-arrow-in-right fs-2"></i> Login</a>
