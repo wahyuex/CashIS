@@ -44,10 +44,10 @@ class LoginController extends Controller
 
         if (auth()->attempt($credentials)) {
             // Jika autentikasi berhasil
-            if (auth()->user()->role == 'Admin') {
+            if (auth()->user()->role_id == '1') {
                 return redirect()->route('listobat'); // Ganti dengan rute yang sesuai untuk halaman admin
-            } elseif (auth()->user()->role == 'Kasir') {
-                return redirect()->route('kasir.homekasir'); // Ganti dengan rute yang sesuai untuk halaman kasir
+            } elseif (auth()->user()->role_id == '2') {
+                return redirect()->route('homekasir'); // Ganti dengan rute yang sesuai untuk halaman kasir
             }
         }
 

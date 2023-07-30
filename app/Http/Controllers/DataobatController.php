@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Listobat;
 use Illuminate\Http\Request;
 
 class DataobatController extends Controller
@@ -11,9 +12,14 @@ class DataobatController extends Controller
      */
     public function index()
     {
-        $pageTitle = 'Data Obat';
-        // confirmDelete();
-        return view('admin.dataobat.index', compact('pageTitle'));
+        $pageTitle = 'List Obat';
+
+        // ELOQUENT
+        $listobats = Listobat::all();
+        return view('admin.dataobat.index', [
+            'pageTitle' => $pageTitle,
+            'listobats' => $listobats
+        ]);
     }
 
     /**
@@ -21,7 +27,15 @@ class DataobatController extends Controller
      */
     public function create()
     {
-        //
+
+        $pageTitle = 'Create Dataobat';
+
+        return view('admin.dataobat.create', compact('pageTitle'));
+
+        $pageTitle = 'Buat Obat';
+
+        return view('admin.dataobat.create', compact('pageTitle'));
+
     }
 
     /**
