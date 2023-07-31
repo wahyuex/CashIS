@@ -1,4 +1,4 @@
-@extends('layoutsadmin.app')
+@extends('layaoutspengguna.app')
 
 @section('content')
     <div class="container mt-4">
@@ -61,7 +61,7 @@
                                         <form action="{{ route('pengguna.destroy', ['pengguna' => $user->id]) }}" method="POST">
                                             @csrf
                                             @method('delete')
-                                            <button type="submit" class="btn btn-outline-light btn-sm me-2"><svg
+                                            <button type="submit" class="btn btn-outline-light btn-sm me-2 btn-delete" data-name="{{ $user->name }}"><svg
                                                     xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="black" class="bi bi-trash" viewBox="0 0 16 16">
                                                     <path
@@ -80,3 +80,29 @@
         </div>
     </div>
 @endsection
+@push('scripts')
+    <script type="module">
+        $(document).ready(function() {
+
+            $(".datatable").on("click", ".btn-delete", function (e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Are you sure want to delete\n" + name + "?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-primary",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
+        });
+    </script>
+@endpush
