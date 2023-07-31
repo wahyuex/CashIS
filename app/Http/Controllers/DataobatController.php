@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Listobat;
 use App\Models\Satuan;
-use Dotenv\Validator;
+// use Dotenv\Validator;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 
 class DataobatController extends Controller
@@ -15,12 +16,14 @@ class DataobatController extends Controller
     public function index()
     {
         $pageTitle = 'List Obat';
-
+        $satuans = Satuan::all();
         // ELOQUENT
         $listobats = Listobat::all();
-        return view('admin.dataobat.index', [
+        return view('admin.dataobat.index',
+        [
             'pageTitle' => $pageTitle,
-            'listobats' => $listobats
+            'listobats' => $listobats,
+            'satuans' => $satuans
         ]);
     }
 
@@ -31,8 +34,8 @@ class DataobatController extends Controller
     {
 
         $pageTitle = 'Buat Obat';
-
-        return view('admin.dataobat.create', compact('pageTitle'));
+        $satuans = Satuan::all();
+        return view('admin.dataobat.create', compact('pageTitle','satuans'));
 
     }
 
@@ -41,7 +44,33 @@ class DataobatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $messages = [
+            'required' => ':Attribute harus diisi.',
+            'email' => 'Isi :attribute dengan format yang benar',
+            'numeric' => 'Isi :attribute dengan angka'
+        ];
+
+        $validator = Validator::make($request->all(), [
+            'firstName' => 'required',
+            'lastName' => 'required',
+            'email' => 'required|email',
+            'age' => 'required|numeric',
+        ], $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        // ELOQUENT
+        $employee = new Listobat();
+        $employee->firstname = $request->firstName;
+        $employee->lastname = $request->lastName;
+        $employee->email = $request->email;
+        $employee->age = $request->age;
+        $employee->position_id = $request->position;
+        $employee->save();
+
+        return redirect()->route('employees.index');
     }
 
     /**
@@ -60,10 +89,10 @@ class DataobatController extends Controller
         $pageTitle = 'edit list obat';
 
         // ELOQUENT
-        $satuan = Satuan::all();
+        $satuans = Satuan::all();
         $listobat = Listobat::find($id);
 
-        return view('admin.dataobat.edit', compact('pageTitle', 'satuan', 'listobat'));
+        return view('admin.dataobat.edit', compact('pageTitle', 'satuans', 'listobat'));
     }
 
     /**
@@ -90,14 +119,15 @@ class DataobatController extends Controller
 
         // ELOQUENT
         $listobat = Listobat::find($id);
-        $listobat->firstname = $request->firstName;
-        $listobat->lastname = $request->lastName;
-        $listobat->email = $request->email;
-        $listobat->age = $request->age;
-        $listobat->position_id = $request->position;
+        $listobat->code = $request->code;
+        $listobat->name = $request->name;
+        $listobat->harga = $request->harga;
+        $listobat->kategori = $request->kategori;
+        $listobat->stock = $request->stock;
+        $listobat->satuan_id = $request->satuan;
         $listobat->save();
 
-        return redirect()->route('listobats.index');
+        return redirect()->route('listobat');
 
     }
 

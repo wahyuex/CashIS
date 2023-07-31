@@ -2,9 +2,9 @@
 
 @section('content')
     <div class="container-sm my-5 edit">
-        <form action="{{ route('pengguna.update', ['pengguna' => $user->id]) }}" method="POST">
+        <form action="{{ route('pengguna.update', ['pengguna' => $user->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
-            @method('put')
+            @method('PUT')
             <div class="row justify-content-center">
                 <div class="p-5 bg-light rounded-3 col-xl-6 grad">
                     <div class="mb-3 text-center">
