@@ -6,7 +6,6 @@ use App\Models\Role;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use RealRashid\SweetAlert\Facades\Alert;
 
 class PenggunaController extends Controller
 {
@@ -16,7 +15,7 @@ class PenggunaController extends Controller
     public function index()
     {
         $pageTitle = 'Pengguna';
-        confirmDelete();
+
         // ELOQUENT
         $users = Users::all();
         return view('admin.pengguna.index', [
@@ -71,9 +70,6 @@ class PenggunaController extends Controller
         // Tambahkan pesan untuk pengecekan
         if ($pengguna->save()) {
             // Data berhasil disimpan
-            Alert::success('Added Successfully', 'Pengguna Data Added Successfully.');
-
-
             return redirect()->route('pengguna.index')->with('success', 'Data pengguna berhasil disimpan.');
         } else {
             // Data gagal disimpan
@@ -119,7 +115,7 @@ class PenggunaController extends Controller
     public function destroy(string $id)
     {
         Users::find($id)->delete();
-        Alert::success('Deleted Successfully', 'Pengguna Data Deleted Successfully.');
+
         return redirect()->route('pengguna.index');
     }
 }
