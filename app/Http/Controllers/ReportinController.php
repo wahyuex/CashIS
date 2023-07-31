@@ -72,10 +72,12 @@ class ReportinController extends Controller
             'harga_satuan' => $obat->harga, // Ganti dengan harga satuan sesuai aplikasi Anda
             'total_harga' => $obat->harga * $jumlah_masuk, // Ganti dengan total harga sesuai aplikasi Anda
         ]);
+        $totalHargaSum = inreports::sum('total_harga');
         $reportins = inreports::all();
         return view('admin.laporanmasuk.index', [
             'pageTitle' => $pageTitle,
-            'reportins' => $reportins
+            'reportins' => $reportins,
+            'totalHargaSum' => $totalHargaSum
         ]);
         // return redirect()->route('laporanmasuk.index',['reportins' => $reportins])
         //     ->with('success', 'Stok berhasil ditambahkan.');
