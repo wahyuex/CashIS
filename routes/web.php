@@ -37,12 +37,12 @@ Route::middleware(['auth', 'Admin'])->group(function () {
     Route::resource('dataobat', DataobatController::class);
     // Route::resource('kasir', KasirController::class);
     // Route::get('/pengguna', [PenggunaController::class, 'index'])->name('pengguna');
-    Route::resource('pengguna',PenggunaController::class);
-    Route::resource('laporanmasuk',ReportinController::class);
-    Route::resource('laporankeluar',ReportoutController::class);
-    Route::resource('resi',ResiController::class);
+    Route::resource('pengguna', PenggunaController::class);
+    Route::resource('laporanmasuk', ReportinController::class);
+    Route::resource('laporankeluar', ReportoutController::class);
+    Route::resource('resi', ResiController::class);
     Route::get('fullimages', [ResiController::class, 'fullimage'])->name('fullimages');
-    Route::get('indonesia', function(){
+    Route::get('indonesia', function () {
         return view('admin.dataobat.coba');
     });
     Route::get('selectProv', [ReportinController::class, 'tambahstock'])->name('tambahstock.index');
@@ -53,12 +53,14 @@ Route::middleware(['auth', 'Kasir'])->group(function () {
     Route::post('/add-to-cart', [KasirController::class, 'addToCart'])->name('add-to-cart');
     Route::post('/checkout', [KasirController::class, 'checkout'])->name('checkout');
     Route::get('/cart', [KasirController::class, 'showCart'])->name('cart');
-    Route::resource('Kasir',KasirController::class);
-    Route::get('Kasirdestroy/{id}',[KasirController::class, 'destroy']);
+    Route::resource('Kasir', KasirController::class);
+    Route::get('Kasirdestroy/{id}', [KasirController::class, 'destroy']);
     // Route::delete('/Kasir/{id}', [KasirController::class, 'destroy'])->name('Kasirdestroy');
 
 });
 
 
 
+Route::get('exportExcel', [EmployeeController::class, 'exportExcel'])->name('employees.exportExcel');
 
+Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');

@@ -6,6 +6,9 @@ use App\Models\inreports;
 use App\Models\Listobat;
 use App\Models\Satuan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LaporanmasukExport;
+use PDF;
 
 class ReportinController extends Controller
 {
@@ -32,14 +35,14 @@ class ReportinController extends Controller
     public function create()
     {   $pageTitle = 'Nambah Stock';
         $satuan = Satuan::all();
-        return view('admin.laporanmasuk.tambahstock',compact('pageTitle','satuan'));
+        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $pageTitle = 'Employee';
         $request->validate([
             'kode_produk' => 'required|string',
@@ -114,10 +117,4 @@ class ReportinController extends Controller
     {
         //
     }
-    public function tambahstock(){
-        $data = Listobat::where('name', 'LIKE', '%'.request('q').'%')->paginate(10);
-
-        return response()->json($data);
-    }
-
 }
