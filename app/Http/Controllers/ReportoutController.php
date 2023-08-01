@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\outreports;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ReportoutController extends Controller
 {
@@ -67,5 +68,9 @@ class ReportoutController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function exportExcel()
+    {
+        return Excel::download(new outreportsExport, 'outreports.xlsx');
     }
 }

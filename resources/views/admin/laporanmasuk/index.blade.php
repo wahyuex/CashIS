@@ -19,9 +19,9 @@
                         </a> --}}
                     </li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('laporanmasuk.export_excel') }}" class="btn btn-outline-danger">
+                        <a href="{{ route('laporanmasuk.export_excel') }}" class="btn btn-outline-danger">
                             <i class="bi bi-download me-1"></i> to Excel
-                        </a> --}}
+                        </a>
                     </li>
                     <li class="list-inline-item">
                         {{-- <a href="{{ route('admin.create') }}" class="btn btn-primary">

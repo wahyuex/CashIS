@@ -14,7 +14,7 @@
     <nav class="navbar bg-body-tertiary">
         <div class="container">
             <a class="navbar-brand" href="#">
-                <img href="#" class="fw-bold"><img src="{{ Vite::asset('resources/images/logo.png') }}"
+                <img href="#" class="fw-bold"><img src="{{ Vite::asset('resources/images/logonobg.png') }}"
                     alt="image" width=100px>
             </a>
             <a class="nav-link active fs-3 fw-bold" aria-current="page" href="{{ route('login') }}"><i
@@ -36,7 +36,7 @@
             </div>
         </div>
     </section>
-    <section class="p-5 "style="background-color: black">
+    <section class="p-5" id="wlcm">
         <div class="container text-center">
             <div class="row text-center g-4">
                 <div class="col-md">

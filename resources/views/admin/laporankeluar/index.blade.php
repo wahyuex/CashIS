@@ -14,9 +14,9 @@
                         </a> --}}
                     </li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('laporankeluar.export_pdf') }}" class="btn btn-outline-danger">
+                        <a href="{{ route('laporankeluar.export_pdf') }}" class="btn btn-outline-danger">
                             <i class="bi bi-download me-1"></i> to PDF
-                        </a> --}}
+                        </a>
                     </li>
                     <li class="list-inline-item"></li>
                     <li class="list-inline-item">
