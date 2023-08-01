@@ -6,7 +6,7 @@
 <nav class="navbar navbar-expand-md navbar-dark" style="background-color: #767676">
 
     <div class="container">
-        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"> <img src="{{ Vite::asset('resources/images/logonobg.png') }}" width="75" height="40"></a>
+        {{-- <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"> <img src="{{ Vite::asset('resources/images/logonobg.png') }}" width="75" height="40"></a> --}}
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
