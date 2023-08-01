@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-sm my-5 edit">
-        <form action="{{ route('pengguna.update', ['pengguna' => $user->id]) }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('pengguna.update', ['pengguna' => $users->id]) }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="row justify-content-center">
@@ -14,62 +14,45 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="kode_barang" class="form-label">Kode Barang</label>
-                            <input class="form-control @error('kode_barang') is-invalid @enderror" type="text"
-                                name="kode_barang" id="kode_barang"
-                                value="{{ $errors->any() ? old('kode_barang') : $barang->kode_barang }}"
+                            <label for="name" class="form-label">Kode Barang</label>
+                            <input class="form-control @error('name') is-invalid @enderror" type="text"
+                                name="name" id="name"
+                                value="{{ $errors->any() ? old('name') : $users->name }}"
                                 placeholder="Enter Kode Barang">
-                            @error('kode_barang')
+                            @error('name')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="nama_barang" class="form-label">Nama Barang</label>
-                            <input class="form-control @error('nama_barang') is-invalid @enderror" type="text"
-                                name="nama_barang" id="nama_barang"
-                                value="{{ $errors->any() ? old('nama_barang') : $barang->nama_barang }}"
+                            <label for="email" class="form-label">Nama Barang</label>
+                            <input class="form-control @error('email') is-invalid @enderror" type="text"
+                                name="email" id="email"
+                                value="{{$errors->any() ? old('email') : $users->email }}"
                                 placeholder="Enter Nama Barang">
-                            @error('nama_barang')
+                            @error('email')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="harga_barang" class="form-label">Harga Barang</label>
-                            <input class="form-control @error('harga_barang') is-invalid @enderror" type="text"
-                                name="harga_barang" id="harga_barang"
-                                value="{{ $errors->any() ? old('harga_barang') : $barang->harga_barang }}"
+                            <label for="password" class="form-label">Harga Barang</label>
+                            <input class="form-control @error('password') is-invalid @enderror" type="text"
+                                name="password" id="password"
+                                value="{{$errors->any() ? old('password') : $users->password }}"
                                 placeholder="Enter Harga Barang">
-                            @error('harga_barang')
-                                <div class="text-danger"><small>{{ $message }}</small></div>
-                            @enderror
-                        </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="deskripsi_barang" class="form-label">Deskripsi Barang</label>
-                            <input class="form-control @error('deskripsi_barang') is-invalid @enderror" type="text"
-                                name="deskripsi_barang" id="deskripsi_barang"
-                                value="{{ $errors->any() ? old('deskripsi_barang') : $barang->deskripsi_barang }}"
-                                placeholder="Enter Deskripsi Barang">
-                            @error('deskripsi_barang')
+                            @error('password')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="satuan_id" class="form-label">Satuan Barang</label>
-                            <select name="satuan_id" id="satuan_id" class="form-select">
-                                @php
-                                    $selected = '';
-                                    if ($errors->any()) {
-                                        $selected = old('satuan');
-                                    } else {
-                                        $selected = $barang->satuan_id;
-                                    }
-                                @endphp
-                                @foreach ($satuans as $satuan)
-                                    <option value="{{ $satuan->id }}" {{ $selected == $satuan->id ? 'selected' : '' }}>
-                                        {{ $satuan->nama_satuan }}</option>
+                            <label for="satuan" class="form-label">satuan</label>
+                            <select name="role" id="role" class="form-select">
+                                @foreach ($roles as $role)
+                                    <option value="{{ $role->id }}"
+                                        {{ old('role', $users->role_id) == $role->id ? 'selected' : '' }}>
+                                        {{ $role->nama_role }}</option>
                                 @endforeach
                             </select>
-                            @error('satuan')
+                            @error('position')
                                 <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
@@ -77,7 +60,7 @@
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">
-                            <a href="{{ route('barangs.index') }}" class="btn btn-outline-dark btn-cancel btn-lg mt-3">
+                            <a href="{{ route('pengguna.index') }}" class="btn btn-outline-dark btn-cancel btn-lg mt-3">
                                 <i class="bi-arrow-left-circle me-2"></i> Cancel</a>
                         </div>
                         <div class="col-md-6 d-grid">
