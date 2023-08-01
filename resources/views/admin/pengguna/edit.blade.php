@@ -9,12 +9,12 @@
                 <div class="p-5 bg-light rounded-3 col-xl-6 grad">
                     <div class="mb-3 text-center">
                         <img src="{{ Vite::asset('images/main.png') }}" alt="image" width=20%>
-                        <h4>Edit Barang</h4>
+                        <h4>Edit Pengguna</h4>
                     </div>
                     <hr>
                     <div class="row">
                         <div class="col-md-6 mb-3">
-                            <label for="name" class="form-label">Kode Barang</label>
+                            <label for="name" class="form-label">Nama Pengguna</label>
                             <input class="form-control @error('name') is-invalid @enderror" type="text"
                                 name="name" id="name"
                                 value="{{ $errors->any() ? old('name') : $users->name }}"
@@ -24,7 +24,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Nama Barang</label>
+                            <label for="email" class="form-label">Email Pengguna</label>
                             <input class="form-control @error('email') is-invalid @enderror" type="text"
                                 name="email" id="email"
                                 value="{{$errors->any() ? old('email') : $users->email }}"
@@ -34,7 +34,7 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="password" class="form-label">Harga Barang</label>
+                            <label for="password" class="form-label">Password</label>
                             <input class="form-control @error('password') is-invalid @enderror" type="text"
                                 name="password" id="password"
                                 value="{{$errors->any() ? old('password') : $users->password }}"
@@ -44,7 +44,7 @@
                             @enderror
                         </div>
                         <div class="col-md-12 mb-3">
-                            <label for="satuan" class="form-label">satuan</label>
+                            <label for="satuan" class="form-label">status</label>
                             <select name="role" id="role" class="form-select">
                                 @foreach ($roles as $role)
                                     <option value="{{ $role->id }}"
