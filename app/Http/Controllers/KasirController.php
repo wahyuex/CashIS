@@ -13,15 +13,24 @@ class KasirController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $pageTitle = 'List Obat';
-
+        $cartItems = Cart::all();
         // ELOQUENT
         $listobats = Listobat::all();
+        if($request){
+            $data = Listobat::where('name', 'like', '%'.$request->cari.'%')->get(); 
+        }else{
+            $data = Listobat::all(); 
+        }
+        
         return view('kasir.index', [
             'pageTitle' => $pageTitle,
-            'listobats' => $listobats
+            'listobats' => $listobats,
+            'cartItems' => $cartItems,
+            'data' => $data,
+            'request' => $request
         ]);
     }
 
@@ -68,10 +77,13 @@ class KasirController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        Cart::findOrFail($id)->delete();
+    
+        return redirect()->back()->with('succes','items sudah dihapus');
     }
+    
 
 
     public function addToCart(Request $request)
@@ -120,8 +132,7 @@ class KasirController extends Controller
                 'satuan_id' => $item->satuan_id,
             ]);
         }
-    
-        return response()->json(['message' => 'Item added to cart'], 200);
+        return redirect()->route('homekasir');
     }
     
     public function checkout(Request $request)
@@ -156,7 +167,8 @@ class KasirController extends Controller
         // Hapus data dari cart setelah proses checkout
         Cart::truncate();
     
-        return response()->json(['message' => 'Checkout successful'], 200);
+        // return response()->json(['message' => 'Checkout successful'], 200);
+        return redirect()->route('homekasir');
     }
     
 
@@ -165,4 +177,5 @@ class KasirController extends Controller
         $cartItems = Cart::all();
         return view('kasir.cart', compact('cartItems'));
     }
+    
 }

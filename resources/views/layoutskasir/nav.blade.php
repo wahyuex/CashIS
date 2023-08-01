@@ -13,16 +13,16 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <hr class="d-md-none text-white-50">
 
-            <ul class="navbar-nav flex-row flex-wrap">
+            {{-- <ul class="navbar-nav flex-row flex-wrap">
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('cart') }}"
                         class="nav-link @if ($currentRouteName == 'cart') active @endif">Keranjang</a></li>
-                {{-- <li class="nav-item col-2 col-md-auto"><a href="{{ route('pengguna.index') }}"
+                <li class="nav-item col-2 col-md-auto"><a href="{{ route('pengguna.index') }}"
                         class="nav-link @if ($currentRouteName == 'pengguna.index') active @endif">Pengguna</a></li>
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('laporanmasuk.index') }}"
                         class="nav-link @if ($currentRouteName == 'laporanmasuk.index') active @endif">Laporan Masuk</a></li>
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('laporankeluar.index') }}"
-                        class="nav-link @if ($currentRouteName == 'laporankeluar.index') active @endif">Laporan Keluar</a></li> --}}
-            </ul>
+                        class="nav-link @if ($currentRouteName == 'laporankeluar.index') active @endif">Laporan Keluar</a></li>
+            </ul> --}}
 
             <hr class="d-md-none text-white-50">
 

@@ -38,16 +38,17 @@
             </tr>
         </thead>
         <tbody>
-            {{-- @foreach ($employees as $index => $employee)
+            @foreach ($listobat as $index => $listobat)
                 <tr>
                     <td align="center">{{ $index + 1 }}</td>
-                    <td>{{ $employee->firstname }}</td>
-                    <td>{{ $employee->lastname }}</td>
-                    <td>{{ $employee->email }}</td>
-                    <td align="center">{{ $employee->age }}</td>
-                    <td>{{ $employee->position->name }}</td>
+                    <td>{{ $listobat->kode }}</td>
+                    <td>{{ $listobat->namabarang }}</td>
+                    <td>{{ $listobat->barangmasuk }}</td>
+                    <td>{{ $listobat->barangkeluar }}</td>
+                    <td>{{ $listobat->sisastok }}</td>
+                    <td>{{ $listobat->totalstok }}</td>
                 </tr>
-            @endforeach --}}
+            @endforeach
         </tbody>
     </table>
 </body>

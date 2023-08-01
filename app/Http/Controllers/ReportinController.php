@@ -6,6 +6,9 @@ use App\Models\inreports;
 use App\Models\Listobat;
 use App\Models\Satuan;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\LaporanmasukExport;
+use PDF;
 
 class ReportinController extends Controller
 {
@@ -17,9 +20,12 @@ class ReportinController extends Controller
         $pageTitle = 'Employee List';
         // confirmDelete();
         $reportins = inreports::all();
+        $totalHargaSum = inreports::sum('total_harga');
+
         return view('admin.laporanmasuk.index', [
             'pageTitle' => $pageTitle,
-            'reportins' => $reportins
+            'reportins' => $reportins,
+            'totalHargaSum' => $totalHargaSum
         ]);
     }
 
@@ -27,16 +33,16 @@ class ReportinController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   $pageTitle = 'Employee';
+    {   $pageTitle = 'Nambah Stock';
         $satuan = Satuan::all();
-        return view('admin.laporanmasuk.tambahstock',compact('pageTitle','satuan'));
+        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         $pageTitle = 'Employee';
         $request->validate([
             'kode_produk' => 'required|string',
@@ -48,7 +54,7 @@ class ReportinController extends Controller
         $pemasok = $request->input('pemasok');
         $satuan_id = $request->input('satuan_id');
         // Cari data obat berdasarkan kode_produk
-        $obat = Listobat::where('code', $kode_produk)->first();
+        $obat = Listobat::where('id', $kode_produk)->first();
 
         if (!$obat) {
             return redirect()->route('laporanmasuk.create')

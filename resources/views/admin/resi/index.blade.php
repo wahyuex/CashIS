@@ -4,14 +4,14 @@
     <div class="container mt-4">
         <div class="row mb-0">
             <div class="col-lg-9 col-xl-6">
-                <h4 class="mb-3">List Obat</h4>
+                <h4 class="mb-3">List Resi</h4>
             </div>
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportExcel') }}" class="btn btn-outline-success">
-                            <i class="bi bi-download me-1"></i> to Excel
-                        </a> --}}
+                        <a href="{{ route('resi.create') }}" class="btn btn-outline-success">
+                            <i class="bi bi-download me-1"></i> Create Resi
+                        </a>
                     </li>
                     <li class="list-inline-item">
                         {{-- <a href="{{ route('admin.exportPdf') }}" class="btn btn-outline-danger">
@@ -20,9 +20,9 @@
                     </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">
-                        <a href="{{ route('dataobat.create') }}" class="btn btn-secondary">
-                            <i class="bi bi-plus-circle me-1"></i> Tambah Obat
-                        </a>
+                        {{-- <a href="{{ route('admin.create') }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle me-1"></i> Create Employee
+                        </a> --}}
                     </li>
                 </ul>
             </div>
@@ -33,35 +33,35 @@
                 <thead>
                     <tr>
                         <th>No.</th>
-                        <th>kode</th>
-                        <th>Name</th>
-                        <th>harga</th>
-                        <th>stock</th>
-                        <th>kategori</th>
-                        <th>satuan</th>
-                        <th>aksi</th>
+                        <th>NamaPT</th>
+                        <th>Tanggal</th>
+                        <th>FotoResi</th>
+                        <th>Diskon</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($listobats as $listobat)
+                    @foreach ($resis as $resi)
                         <tr class="text-center">
-                            <td>{{ $listobat->id }}</td>
-                            <td>{{ $listobat->code }}</td>
-                            <td>{{ $listobat->name }}</td>
-                            <td>{{ $listobat->harga }}</td>
-                            <td>{{ $listobat->stock }}</td>
-                            <td>{{ $listobat->kategori }}</td>
-                            <td>{{ $listobat->satuan->name_satuan }}</td>
+                            <td>{{ $resi->id }}</td>
+                            <td>{{ $resi->namapt }}</td>
+                            <td>{{ $resi->tanggal }}</td>
+                            <td>
+                                <a href="#" data-bs-toggle="modal" data-bs-target="#fullImageModal{{ $resi->id }}">
+                                    <img src="{{ asset('storage/files/' . $resi->encrypted_filename) }}" alt="FotoResi" style="max-width: 100px;">
+                                </a>
+                            </td>
+                            <td>{{ $resi->diskon }}%</td>
                             <td class="text-center">
                                 <div class="d-flex text-center">
-                                    <a href="{{ route('dataobat.edit', ['dataobat' => $listobat->id]) }}"
+                                    <a href=""
                                         class="btn btn-outline-light border border-primary btn-sm me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-pencil-square" viewBox="0 0 16 16">
                                             <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
                                             <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                                           </svg></a>
 
                                     <div>
-                                        <form action="{{ route('dataobat.destroy', ['dataobat' => $listobat->id]) }}" method="POST">
+                                        <form action=""
+                                            method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-outline-light btn-sm me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-trash" viewBox="0 0 16 16">
@@ -78,4 +78,20 @@
             </table>
         </div>
     </div>
+    @foreach ($resis as $resi)
+    <div class="modal fade" id="fullImageModal{{ $resi->id }}" tabindex="-1" aria-labelledby="fullImageModalLabel{{ $resi->id }}" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="fullImageModalLabel{{ $resi->id }}">Full Image - {{ $resi->namapt }}</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="{{ asset('storage/files/' . $resi->encrypted_filename) }}" alt="FotoResi" style="width: 100%; max-width: 800px;">
+                </div>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 @endsection

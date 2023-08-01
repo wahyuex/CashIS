@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Listobat;
 use App\Models\Satuan;
-// use Dotenv\Validator;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DataobatController extends Controller
 {
@@ -32,10 +32,12 @@ class DataobatController extends Controller
      */
     public function create()
     {
-
         $pageTitle = 'Buat Obat';
+
+
         $satuans = Satuan::all();
         return view('admin.dataobat.create', compact('pageTitle','satuans'));
+
 
     }
 
@@ -44,33 +46,46 @@ class DataobatController extends Controller
      */
     public function store(Request $request)
     {
-        $messages = [
-            'required' => ':Attribute harus diisi.',
-            'email' => 'Isi :attribute dengan format yang benar',
-            'numeric' => 'Isi :attribute dengan angka'
-        ];
+        // var_dump($request->name);die();
+        // $messages = [
+        //     'required' => ':attribute harus diisi.',
+        //     'unique' => ':attribute sudah digunakan.',
+        //     'numeric' => 'Isi :attribute dengan angka.'
+        // ];
 
-        $validator = Validator::make($request->all(), [
-            'firstName' => 'required',
-            'lastName' => 'required',
-            'email' => 'required|email',
-            'age' => 'required|numeric',
-        ], $messages);
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'password' => 'required',
+        //     'role_id' => 'required|exists:roles,id',
+        // ], $messages);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+        // Hash the password
+        // $hashedPassword = bcrypt($validatedData['password']);
+        // Hash the password
+        // Pastikan kode untuk menyimpan data
+        $pengguna = new Listobat();
+        $pengguna->name = $request->name;
+        $pengguna->code = $request->code;
+        $pengguna->harga = $request->harga;
+        $pengguna->stock = $request->stock;
+        $pengguna->kategori = $request->kategori;
+        $pengguna->satuan_id = $request->satuan_id;
+
+        // return redirect()->route('dataobat.index');
+        // Tambahkan pesan untuk pengecekan
+        if ($pengguna->save()) {
+        // Data berhasil disimpan
+             return redirect()->route('dataobat.index')->with('success', 'Data pengguna berhasil disimpan.');
+        } else {
+           // Data gagal disimpan
+            return redirect()->route('dataobat.create')->with('error', 'Gagal menyimpan data pengguna.');
         }
 
-        // ELOQUENT
-        $employee = new Listobat();
-        $employee->firstname = $request->firstName;
-        $employee->lastname = $request->lastName;
-        $employee->email = $request->email;
-        $employee->age = $request->age;
-        $employee->position_id = $request->position;
-        $employee->save();
-
-        return redirect()->route('employees.index');
+        
     }
 
     /**
@@ -136,6 +151,8 @@ class DataobatController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Listobat::find($id)->delete();
+
+        return redirect()->route('dataobat.index');
     }
 }

@@ -59,6 +59,7 @@
                     </tbody>
                 </thead>
             </table>
+            <h3>Jumlah Total Harga: {{$totalHargaSum}}</h3>
         </div>
     </div>
 @endsection
