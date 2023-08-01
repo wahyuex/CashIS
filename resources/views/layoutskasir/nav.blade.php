@@ -4,7 +4,8 @@
 
 <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <div class="container">
-        <a href=" {{ route('homekasir') }} " class="navbar-brand mb-0 h1">CashIS</a>
+        <a href=" {{ route('homekasir') }} " class="navbar-brand mb-0 h1"><img
+                src="{{ Vite::asset('resources/images/logo.png') }}" alt="image" width=100px></a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -69,6 +70,6 @@
 
 
 
-{{-- 
+{{--
 {{ route('profile') }}
 {{ route('profile') }} --}}

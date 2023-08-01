@@ -50,7 +50,7 @@
             </div>
             <div class="col">
                 <div style="display: flex ; margin-top: 20px;">
-                    <img src="{{ Vite::asset('resources\images\LOGO.png') }}" alt="image">
+                    <img src="{{ Vite::asset('resources\images\logo.png') }}" width="100px" alt="image">
                     <h5 style="margin-left: 120px">Apotik Aasiyah <br>Jl. Mojoroto</h5>
                 </div>
                 <div style="display: flex ; justify-content: space-between; margin-top: ">
@@ -161,44 +161,43 @@
     </div>
 @endsection
 @push('cetakstruk')
-<!-- Include the jsPDF library using a script tag -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- Include the jsPDF library using a script tag -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
-<script>
-    // Function to generate the PDF
-    function generatePDF() {
-        const doc = new jsPDF();
+    <script>
+        // Function to generate the PDF
+        function generatePDF() {
+            const doc = new jsPDF();
 
-        // Get the values to include in the PDF
-        const bayarInputValue = document.getElementById("bayarInput").value;
-        const totalValue = document.getElementById("Total").textContent;
-        const kembalianValue = document.getElementById("kembalian").textContent;
+            // Get the values to include in the PDF
+            const bayarInputValue = document.getElementById("bayarInput").value;
+            const totalValue = document.getElementById("Total").textContent;
+            const kembalianValue = document.getElementById("kembalian").textContent;
 
-        // Build the content for the PDF using string concatenation
-        const content =
-            "Bayar: " + bayarInputValue + "\n" +
-            "Total: " + totalValue + "\n" +
-            "Kembalian: " + kembalianValue;
+            // Build the content for the PDF using string concatenation
+            const content =
+                "Bayar: " + bayarInputValue + "\n" +
+                "Total: " + totalValue + "\n" +
+                "Kembalian: " + kembalianValue;
 
-        // Add the content to the PDF
-        doc.text(content, 10, 10);
+            // Add the content to the PDF
+            doc.text(content, 10, 10);
 
-        // Save the PDF
-        doc.save("struk.pdf");
-    }
-
-    // Function to initialize the button event listener
-    function initializeButtonEvent() {
-        const cetakStrukButton = document.getElementById("cetakStrukButton");
-        if (cetakStrukButton) {
-            cetakStrukButton.addEventListener("click", generatePDF);
+            // Save the PDF
+            doc.save("struk.pdf");
         }
-    }
 
-    // Add an event listener to the window object to call initializeButtonEvent after the script is loaded
-    window.addEventListener("load", initializeButtonEvent);
-</script>
+        // Function to initialize the button event listener
+        function initializeButtonEvent() {
+            const cetakStrukButton = document.getElementById("cetakStrukButton");
+            if (cetakStrukButton) {
+                cetakStrukButton.addEventListener("click", generatePDF);
+            }
+        }
 
+        // Add an event listener to the window object to call initializeButtonEvent after the script is loaded
+        window.addEventListener("load", initializeButtonEvent);
+    </script>
 @endpush
 
 
@@ -288,5 +287,5 @@
     // Function to generate the PDF
 
   </script>
-  
+
 @endpush --}}

@@ -8,7 +8,7 @@
                 <div class="p-5 bg-light rounded-3 border col-xl-6">
                     <div class="mb-3 text-center">
                         <i class="bi-person-circle fs-1"></i>
-                        <h4>Create Employee</h4>
+                        <h4>Create Resi</h4>
                     </div>
                     <hr>
                     <div class="row">
@@ -25,8 +25,7 @@
                         <div class="col-md-6 mb-3">
                             <label for="lastName" class="form-label">harga</label>
                             <input class="form-control @error('lastName') is-invalid @enderror" type="number"
-                                name="harga" id="lastName" value="{{ old('lastName') }}"
-                                placeholder="harga">
+                                name="harga" id="lastName" value="{{ old('lastName') }}" placeholder="harga">
                             @error('lastName')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
@@ -45,7 +44,7 @@
                         <input type="file" class="form-control" name="fotoresi" id="cv">
                     </div>
 
-                    
+
                     <hr>
                     <div class="row">
                         <div class="col-md-6 d-grid">

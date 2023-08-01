@@ -41,16 +41,16 @@
             @foreach ($listobat as $index => $listobat)
                 <tr>
                     <td align="center">{{ $index + 1 }}</td>
-                    <td>{{ $listobat->kode }}</td>
-                    <td>{{ $listobat->namabarang }}</td>
-                    <td>{{ $listobat->barangmasuk }}</td>
-                    <td>{{ $listobat->barangkeluar }}</td>
-                    <td>{{ $listobat->sisastok }}</td>
-                    <td>{{ $listobat->totalstok }}</td>
+                    <td>{{ $listobat->tanggal }}</td>
+                    <td>{{ $listobat->kode_produk }}</td>
+                    <td>{{ $listobat->nama_produk }}</td>
+                    <td>{{ $listobat->jumlah_keluar }}</td>
+                    <td>{{ $listobat->harga_satuan }}</td>
+                    <td>{{ $listobat->pemasok }}</td>
+                    <td>{{ $listobat->total_harga }}</td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </body>
-
 </html>

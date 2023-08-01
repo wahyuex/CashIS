@@ -9,12 +9,12 @@
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportExcel') }}" class="btn btn-outline-success">
+                        {{-- <a href="{{ route('laporankeluar.export_excel') }}" class="btn btn-outline-success">
                             <i class="bi bi-download me-1"></i> to Excel
                         </a> --}}
                     </li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportPdf') }}" class="btn btn-outline-danger">
+                        {{-- <a href="{{ route('laporankeluar.export_pdf') }}" class="btn btn-outline-danger">
                             <i class="bi bi-download me-1"></i> to PDF
                         </a> --}}
                     </li>
@@ -43,21 +43,21 @@
                         <th>total_harga</th>
                         <th></th>
                     </tr>
-                    <tbody>
-                        @foreach ($reportouts as $reportin)
-                            <tr class="text-center">
-                                <td>{{ $reportin->id }}</td>
-                                <td>{{ $reportin->tanggal }}</td>
-                                <td>{{ $reportin->kode_produk }}</td>
-                                <td>{{ $reportin->nama_produk }}</td>
-                                <td>{{ $reportin->harga_satuan }}</td>
-                                <td>{{ $reportin->satuan->name_satuan}}</td>
-                                <td>-{{ $reportin->jumlah_keluar }}</td>
-                                {{-- <td>{{ $reportin->pemasok }}</td> --}}
-                                <td>{{ $reportin->total_harga }}</td>
-                            </tr>
-                        @endforeach
-                    </tbody>
+                <tbody>
+                    @foreach ($reportouts as $reportin)
+                        <tr class="text-center">
+                            <td>{{ $reportin->id }}</td>
+                            <td>{{ $reportin->tanggal }}</td>
+                            <td>{{ $reportin->kode_produk }}</td>
+                            <td>{{ $reportin->nama_produk }}</td>
+                            <td>{{ $reportin->harga_satuan }}</td>
+                            <td>{{ $reportin->satuan->name_satuan }}</td>
+                            <td>-{{ $reportin->jumlah_keluar }}</td>
+                            {{-- <td>{{ $reportin->pemasok }}</td> --}}
+                            <td>{{ $reportin->total_harga }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
                 </thead>
             </table>
         </div>
