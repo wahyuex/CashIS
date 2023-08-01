@@ -61,6 +61,6 @@ Route::middleware(['auth', 'Kasir'])->group(function () {
 
 
 
-Route::get('exportExcel', [EmployeeController::class, 'exportExcel'])->name('employees.exportExcel');
+// Route::get('exportExcel', [EmployeeController::class, 'exportExcel'])->name('employees.exportExcel');
 
-Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');
+// Route::get('exportPdf', [EmployeeController::class, 'exportPdf'])->name('employees.exportPdf');

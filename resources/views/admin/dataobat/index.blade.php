@@ -20,7 +20,7 @@
                     </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">
-                        <a href="{{ route('dataobat.create') }}" class="btn btn-primary">
+                        <a href="{{ route('dataobat.create') }}" class="btn btn-secondary">
                             <i class="bi bi-plus-circle me-1"></i> Tambah Obat
                         </a>
                     </li>
@@ -61,8 +61,7 @@
                                           </svg></a>
 
                                     <div>
-                                        <form action=""
-                                            method="POST">
+                                        <form action="{{ route('dataobat.destroy', ['dataobat' => $listobat->id]) }}" method="POST">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="btn btn-outline-light btn-sm me-2"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="black" class="bi bi-trash" viewBox="0 0 16 16">
