@@ -80,3 +80,10 @@
         </div>
     </div>
 @endsection
+@push('search')
+    <script type="module">
+        $(document).ready(function() {
+            $('#employeeTable').DataTable();
+        });
+    </script>
+@endpush

@@ -2,17 +2,16 @@
 
 @section('content')
     <div class="container-sm my-5">
-        <form action="{{ route('pengguna.store') }}" method="POST" enctype="multipart/form-data">
+        <form action="{{ route('dataobat.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div class="row justify-content-center">
                 <div class="p-5 bg-light rounded-3 border col-xl-6">
                     <div class="mb-3 text-center">
                         <i class="bi-person-circle fs-1"></i>
-                        <h4>Create Pengguna</h4>
+                        <h4>Create Obat</h4>
                     </div>
                     <hr>
                     <div class="row">
-
                         <div class="col-md-6 mb-3">
                             <label for="name" class="form-label">name</label>
                             <input class="form-control @error('name') is-invalid @enderror" type="text" name="name"
@@ -22,19 +21,48 @@
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input class="form-control @error('email') is-invalid @enderror" type="text" name="email"
-                                id="email" value="{{ old('email') }}" placeholder="Enter Email">
-                            @error('email')
+                            <label for="code" class="form-label">code</label>
+                            <input class="form-control @error('code') is-invalid @enderror" type="text" name="code"
+                                id="code" value="{{ old('code') }}" placeholder="Enter code">
+                            @error('code')
                                 <div class="invalid-feedback">{{ $message }}</div>
                             @enderror
                         </div>
                         <div class="col-md-6 mb-3">
-                            <label for="password" class="form-label">password</label>
-                            <input class="form-control @error('password') is-invalid @enderror" type="text"
-                                name="password" id="password" value="{{ old('password') }}" placeholder="Enter password">
-                            @error('password')
+                            <label for="harga" class="form-label">harga</label>
+                            <input class="form-control @error('harga') is-invalid @enderror" type="text"
+                                name="harga" id="harga" value="{{ old('harga') }}" placeholder="Enter harga">
+                            @error('harga')
                                 <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="stock" class="form-label">stock</label>
+                            <input class="form-control @error('stock') is-invalid @enderror" type="text"
+                                name="stock" id="stock" value="{{ old('stock') }}" placeholder="Enter stock">
+                            @error('stock')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="kategori" class="form-label">kategori</label>
+                            <input class="form-control @error('kategori') is-invalid @enderror" type="text"
+                                name="kategori" id="kategori" value="{{ old('kategori') }}" placeholder="Enter kategori">
+                            @error('kategori')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+                        <div class="col-md-12 mb-3">
+                            <label for="satuan_id" class="form-label">Satuan</label>
+                            <select name="satuan_id" id="satuan_id" class="form-select">
+                                @foreach ($satuan as $satuans)
+                                    <option value="{{ $satuans->id }}"
+                                        {{ old('satuan_id') == $satuans->id ? 'selected' : '' }}>
+                                        {{ $satuans->name_satuan }}</option>
+                                @endforeach
+                            </select>
+                            @error('role')
+                                <div class="text-danger"><small>{{ $message }}</small></div>
                             @enderror
                         </div>
                     </div>

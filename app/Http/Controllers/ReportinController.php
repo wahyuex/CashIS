@@ -35,7 +35,8 @@ class ReportinController extends Controller
     public function create()
     {   $pageTitle = 'Nambah Stock';
         $satuan = Satuan::all();
-        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan'));
+        $obat = Listobat::all();
+        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan','obat'));
     }
 
     /**
@@ -76,9 +77,11 @@ class ReportinController extends Controller
             'total_harga' => $obat->harga * $jumlah_masuk, // Ganti dengan total harga sesuai aplikasi Anda
         ]);
         $reportins = inreports::all();
+        $totalHargaSum = inreports::sum('total_harga');
         return view('admin.laporanmasuk.index', [
             'pageTitle' => $pageTitle,
-            'reportins' => $reportins
+            'reportins' => $reportins,
+            'totalHargaSum' => $totalHargaSum
         ]);
         // return redirect()->route('laporanmasuk.index',['reportins' => $reportins])
         //     ->with('success', 'Stok berhasil ditambahkan.');

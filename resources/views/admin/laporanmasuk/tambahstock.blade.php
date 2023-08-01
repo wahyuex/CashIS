@@ -9,10 +9,22 @@
                 <form action="{{ route('laporanmasuk.store') }}" method="POST">
                     @csrf
                     <div class='mb-2'>
-                        <label> Tambah Stock</label>
-                        <select id="selectProv" class="form-select" name="kode_produk" aria-label="Default select example">
+                        {{-- <label> Tambah Stock</label> --}}
+                        <div class="control-group">
+                            <label for="select-beast">Beast:</label>
+                            <select id="select-beast" required class="demo-default"
+                                placeholder="Select a person..." name="kode_produk">
+                                @foreach ($obat as $satuans)
+                                    <option value="{{ $satuans->id }}"
+                                        {{ old('code') == $satuans->id ? 'selected' : '' }}>
+                                        {{ $satuans->name }}</option>
+                                @endforeach
+                            </select>
+                            {{-- <button type="submit">Submit</button> --}}
+                        </div>
+                        {{-- <select id="selectProv" class="form-select" name="kode_produk" aria-label="Default select example">
                             
-                        </select>
+                        </select> --}}
                     </div>
                     {{-- <div class="mb-3">
                     <label for="kode_produk" class="form-label">Kode Produk</label>
@@ -58,38 +70,46 @@
     </div>
 @endsection
 @push('scripts')
-   
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
-integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
-crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
+        integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
-integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
-</script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous">
+    </script>
 
-<script>
-$(document).ready(function(){
-
-    $("#selectProv").select2({
-        placeholder:'Pilih Obat',
-        ajax: {
-            url: "{{route('tambahstock.index')}}",
-            processResults: function({data}){
-                return {
-                    results: $.map(data, function(item){
-                        return {
-                            id: item.id,
-                            text: item.name
-                        }
-                    })
-                }
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/selectize.js/0.15.2/js/selectize.min.js"
+        integrity="sha512-IOebNkvA/HZjMM7MxL0NYeLYEalloZ8ckak+NDtOViP7oiYzG5vn6WVXyrJDiJPhl4yRdmNAG49iuLmhkUdVsQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $('#select-beast').selectize({
+            create: true,
+            sortField: {
+                field: 'text',
+                direction: 'asc'
             }
-        }
-    });
+        });
 
-   
+        // $(document).ready(function(){
 
-});
-</script>
+        //     $("#selectProv").select2({
+        //         placeholder:'Pilih Obat',
+        //         ajax: {
+        //             url: "{{ route('tambahstock.index') }}",
+        //             processResults: function({data}){
+        //                 return {
+        //                     results: $.map(data, function(item){
+        //                         return {
+        //                             id: item.id,
+        //                             text: item.name
+        //                         }
+        //                     })
+        //                 }
+        //             }
+        //         }
+        //     }); 
+
+        // });
+    </script>
 @endpush

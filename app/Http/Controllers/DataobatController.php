@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Listobat;
+use App\Models\Satuan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class DataobatController extends Controller
 {
@@ -28,13 +30,11 @@ class DataobatController extends Controller
     public function create()
     {
 
-        $pageTitle = 'Create Dataobat';
+        $pageTitle = 'Create Pengguna';
 
-        return view('admin.dataobat.create', compact('pageTitle'));
-
-        $pageTitle = 'Buat Obat';
-
-        return view('admin.dataobat.create', compact('pageTitle'));
+        // ELOQUENT
+        $satuan = Satuan::all();
+        return view('admin.dataobat.create', compact('pageTitle', 'satuan'));
 
     }
 
@@ -43,7 +43,13 @@ class DataobatController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $messages = [
+        //     'required' => ':attribute harus diisi.',
+        //     'unique' => ':attribute sudah digunakan.',
+        //     'numeric' => 'Isi :attribute dengan angka.'
+        // ];
+
+
     }
 
     /**

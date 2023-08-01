@@ -51,7 +51,7 @@
             $("#selectProv").select2({
                 placeholder:'Pilih Provinsi',
                 ajax: {
-                    url: "{{route('provinsi.index')}}",
+                    url: "{{route('tambahstock.index')}}",
                     processResults: function({data}){
                         return {
                             results: $.map(data, function(item){
