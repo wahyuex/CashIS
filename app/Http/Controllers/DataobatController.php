@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Listobat;
 use App\Models\Satuan;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -15,12 +16,14 @@ class DataobatController extends Controller
     public function index()
     {
         $pageTitle = 'List Obat';
-
+        $satuans = Satuan::all();
         // ELOQUENT
         $listobats = Listobat::all();
-        return view('admin.dataobat.index', [
+        return view('admin.dataobat.index',
+        [
             'pageTitle' => $pageTitle,
-            'listobats' => $listobats
+            'listobats' => $listobats,
+            'satuans' => $satuans
         ]);
     }
 
@@ -31,8 +34,10 @@ class DataobatController extends Controller
     {
         $pageTitle = 'Buat Obat';
 
-        $satuan = Satuan::all();
-        return view('admin.dataobat.create', compact('pageTitle', 'satuan'));
+
+        $satuans = Satuan::all();
+        return view('admin.dataobat.create', compact('pageTitle','satuans'));
+
 
     }
 
@@ -80,6 +85,7 @@ class DataobatController extends Controller
             return redirect()->route('dataobat.create')->with('error', 'Gagal menyimpan data pengguna.');
         }
 
+        
     }
 
     /**
@@ -95,7 +101,13 @@ class DataobatController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $pageTitle = 'edit list obat';
+
+        // ELOQUENT
+        $satuans = Satuan::all();
+        $listobat = Listobat::find($id);
+
+        return view('admin.dataobat.edit', compact('pageTitle', 'satuans', 'listobat'));
     }
 
     /**
@@ -103,7 +115,35 @@ class DataobatController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // $messages = [
+        //     'required' => ':Attribute harus diisi.',
+        //     'email' => 'Isi :attribute dengan format yang benar',
+        //     'numeric' => 'Isi :attribute dengan angka'
+        // ];
+
+        // $validator = Validator::make($request->all(), [
+        //     'firstName' => 'required',
+        //     'lastName' => 'required',
+        //     'email' => 'required|email',
+        //     'age' => 'required|numeric',
+        // ], $messages);
+
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors($validator)->withInput();
+        // }
+
+        // ELOQUENT
+        $listobat = Listobat::find($id);
+        $listobat->code = $request->code;
+        $listobat->name = $request->name;
+        $listobat->harga = $request->harga;
+        $listobat->kategori = $request->kategori;
+        $listobat->stock = $request->stock;
+        $listobat->satuan_id = $request->satuan;
+        $listobat->save();
+
+        return redirect()->route('listobat');
+
     }
 
     /**
