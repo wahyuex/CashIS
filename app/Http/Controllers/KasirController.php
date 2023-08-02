@@ -7,7 +7,8 @@ use App\Models\Listobat;
 use App\Models\outreports;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-
+use PDF;
+use RealRashid\SweetAlert\Facades\Alert;
 class KasirController extends Controller
 {
     /**
@@ -176,6 +177,17 @@ class KasirController extends Controller
     {
         $cartItems = Cart::all();
         return view('kasir.cart', compact('cartItems'));
+    }
+    public function exportPdf()
+    {
+        $cartItems = Cart::all();
+        $pageTitle = 'List Obat';
+        $listobats = Listobat::all();
+        // $totalHargaSum = outreports::sum('total_harga');
+        confirmDelete();
+        $pdf = PDF::loadView('kasir.export_pdf', compact('cartItems','listobats','pageTitle'));
+
+        return $pdf->download('Struk.pdf');
     }
     
 }

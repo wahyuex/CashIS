@@ -20,6 +20,5 @@
     @stack('cetakstruk')
     @stack('scripts')
     @stack('search')
-
 </body>
 </html>

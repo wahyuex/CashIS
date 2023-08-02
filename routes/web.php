@@ -46,15 +46,21 @@ Route::middleware(['auth', 'Admin'])->group(function () {
         return view('formindonesia');
     });
     Route::get('selectProv', [ReportinController::class, 'tambahstock'])->name('tambahstock.index');
+    Route::get('exportExcelin', [ReportinController::class, 'exportExcel'])->name('laporanmasuk.exportExcel');
+    Route::get('exportPDFin', [ReportinController::class, 'exportPDF'])->name('laporanmasuk.exportPDF');
+    Route::get('exportExcelout', [ReportoutController::class, 'exportExcel'])->name('laporankeluar.exportExcel');
+    Route::get('exportPDFout', [ReportoutController::class, 'exportPDF'])->name('laporankeluar.exportPDF');
 });
 
 Route::middleware(['auth', 'Kasir'])->group(function () {
     Route::get('/homekasir', [KasirController::class, 'index'])->name('homekasir');
     Route::post('/add-to-cart', [KasirController::class, 'addToCart'])->name('add-to-cart');
     Route::post('/checkout', [KasirController::class, 'checkout'])->name('checkout');
+    // Route::get('/checkout', [KasirController::class, 'exportPDF'])->name('checkout');
     Route::get('/cart', [KasirController::class, 'showCart'])->name('cart');
     Route::resource('Kasir', KasirController::class);
     Route::get('Kasirdestroy/{id}', [KasirController::class, 'destroy']);
+    Route::get('exportPDFstruk', [KasirController::class, 'exportPDF'])->name('struk.exportPDF');
     // Route::delete('/Kasir/{id}', [KasirController::class, 'destroy'])->name('Kasirdestroy');
 
 });

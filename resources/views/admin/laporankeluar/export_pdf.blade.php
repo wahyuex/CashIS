@@ -43,7 +43,7 @@
 </head>
 
 <body>
-    <h1>Laporan Stok Obat Masuk</h1>
+    <h1>Laporan Stok Obat Keluar</h1>
     <table>
         <thead>
             <tr>
@@ -51,20 +51,18 @@
                 <th>Tanggal</th>
                 <th>Kode Produk</th>
                 <th>Nama Produk</th>
-                <th>Jumlah Masuk</th>
-                <th>Nama Pemasok</th>
+                <th>Jumlah Keluar</th>
                 <th>Total Harga</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($reportins as $index => $listobat)
+            @foreach ($reportouts as $index => $listobat)
                 <tr>
                     <td class="text-center">{{ $index + 1 }}</td>
                     <td>{{ $listobat->tanggal }}</td>
                     <td>{{ $listobat->kode_produk }}</td>
                     <td>{{ $listobat->nama_produk }}</td>
-                    <td class="text-center">+{{ $listobat->jumlah_masuk }}</td>
-                    <td>{{ $listobat->pemasok }}</td>
+                    <td class="text-center">-{{ $listobat->jumlah_keluar }}</td>
                     <td class="text-center">{{ $listobat->total_harga }}</td>
                 </tr>
             @endforeach

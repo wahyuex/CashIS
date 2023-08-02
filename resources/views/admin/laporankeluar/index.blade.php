@@ -9,14 +9,14 @@
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportExcel') }}" class="btn btn-outline-success">
+                        <a href="{{ route('laporankeluar.exportExcel') }}" class="btn btn-outline-success">
                             <i class="bi bi-download me-1"></i> to Excel
-                        </a> --}}
+                        </a>
                     </li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportPdf') }}" class="btn btn-outline-danger">
+                        <a href="{{ route('laporankeluar.exportPDF') }}" class="btn btn-outline-danger">
                             <i class="bi bi-download me-1"></i> to PDF
-                        </a> --}}
+                        </a>
                     </li>
                     <li class="list-inline-item"></li>
                     <li class="list-inline-item">

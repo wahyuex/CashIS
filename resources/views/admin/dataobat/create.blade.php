@@ -42,7 +42,7 @@
                         </div>
                         <div class="col-md-6 mb-3">
                             <label for="stock" class="form-label">stock</label>
-                            <input class="form-control @error('stock') is-invalid @enderror" type="number"
+                            <input class="form-control @error('stock') is-invalid @enderror" type="hidden" value="0"
                                 name="stock" id="stock" value="{{ old('stock') }}" placeholder="Enter password">
                             @error('stock')
                                 <div class="invalid-feedback">{{ $message }}</div>

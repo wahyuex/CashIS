@@ -6,7 +6,7 @@ use App\Models\Listobat;
 use App\Models\Satuan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-
+use RealRashid\SweetAlert\Facades\Alert;
 
 class DataobatController extends Controller
 {
@@ -18,6 +18,7 @@ class DataobatController extends Controller
         $pageTitle = 'List Obat';
         $satuans = Satuan::all();
         // ELOQUENT
+        confirmDelete();
         $listobats = Listobat::all();
         return view('admin.dataobat.index',
         [
@@ -35,8 +36,8 @@ class DataobatController extends Controller
         $pageTitle = 'Buat Obat';
 
 
-        $satuans = Satuan::all();
-        return view('admin.dataobat.create', compact('pageTitle','satuans'));
+        $satuan = Satuan::all();
+        return view('admin.dataobat.create', compact('pageTitle','satuan'));
 
 
     }
@@ -78,6 +79,7 @@ class DataobatController extends Controller
         // Tambahkan pesan untuk pengecekan
         if ($pengguna->save()) {
         // Data berhasil disimpan
+            Alert::success('Added Successfully', 'Obat Data Added Successfully.');
              return redirect()->route('dataobat.index')->with('success', 'Data pengguna berhasil disimpan.');
         } else {
            // Data gagal disimpan
@@ -140,7 +142,7 @@ class DataobatController extends Controller
         $listobat->stock = $request->stock;
         $listobat->satuan_id = $request->satuan;
         $listobat->save();
-
+        Alert::success('Changed Successfully', 'Obat Data Changed Successfully.');
         return redirect()->route('listobat');
 
     }
@@ -151,7 +153,7 @@ class DataobatController extends Controller
     public function destroy(string $id)
     {
         Listobat::find($id)->delete();
-
+        Alert::success('Deleted Successfully', 'Obat Data Deleted Successfully.');
         return redirect()->route('dataobat.index');
     }
 }

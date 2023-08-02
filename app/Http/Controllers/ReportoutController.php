@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\outreportsExport;
 use App\Models\outreports;
 use Illuminate\Http\Request;
-
+use Maatwebsite\Excel\Facades\Excel;
+use PDF;
 class ReportoutController extends Controller
 {
     /**
@@ -67,5 +69,17 @@ class ReportoutController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function exportExcel()
+    {
+        return Excel::download(new outreportsExport, 'Laporan Keluar.xlsx');
+    }
+    public function exportPdf()
+    {
+        $reportouts = outreports::all();
+        $totalHargaSum = outreports::sum('total_harga');
+        $pdf = PDF::loadView('admin.laporankeluar.export_pdf', compact('reportouts','totalHargaSum'));
+
+        return $pdf->download('inreports.pdf');
     }
 }

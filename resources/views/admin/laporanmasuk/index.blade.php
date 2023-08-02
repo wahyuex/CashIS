@@ -14,15 +14,14 @@
                         </a>
                     </li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportPdf') }}" class="btn btn-outline-danger">
-                            <i class="bi bi-download me-1"></i> to PDF
-                        </a> --}}
+                        <a href="{{ route('laporanmasuk.exportExcel') }}" class="btn btn-outline-success">
+                            <i class="bi bi-download me-1"></i> to Excel
+                        </a>
                     </li>
-                    <li class="list-inline-item"></li>
                     <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.create') }}" class="btn btn-primary">
-                            <i class="bi bi-plus-circle me-1"></i> Create Employee
-                        </a> --}}
+                        <a href="{{ route('laporanmasuk.exportPDF') }}" class="btn btn-outline-warning">
+                            <i class="bi bi-download me-1"></i> to PDF
+                        </a>
                     </li>
                 </ul>
             </div>

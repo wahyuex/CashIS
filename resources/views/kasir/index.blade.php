@@ -76,7 +76,7 @@
                             Nama Kasir :</div>
                     </div>
                 </div>
-                <form action="{{ route('checkout') }}" method="POST">
+                <form action="{{ route('checkout') }}" id="checkoutForm" method="POST">
                     @csrf
                     <table style="margin-top: 20px"
                         class="table table-bordered table-hover table-striped mb-0 bg-white datatable" id="employeeTable">
@@ -117,22 +117,12 @@
                             <input type="number" id="bayarInput"><br>
                             <h5 id="Total">Total : </h5>
                             <hr>
-                            <h5
-                                style="font-family: Inter;
-                            font-size: 24px;
-                            font-weight: 800;
-                            line-height: 29px;
-                            letter-spacing: 0em;
-                            text-align: left;
-                            ">
-                                Checkout</h5>
                             <h5 id="kembalian">Kembalian : </h5>
 
                             <!-- Existing input fields -->
 
                         </div>
-                        <div
-                            style="width: 199px;height: 175px;top: 839px;left: 375px;border-radius: 21px; background: #758BFF;">
+                        <div style="display: inline-block; font-family: Arial, sans-serif; font-size: 18px; font-weight: 700; text-decoration: none; padding: 12px 24px; background-color: #758BFF; color: #ffffff; border-radius: 8px; transition: background-color 0.2s ease-in-out;">
                             <svg width="104" height="104" viewBox="0 0 104 104" fill="none"
                                 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <rect width="104" height="104" fill="url(#pattern0)" />
@@ -145,6 +135,7 @@
                                         xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFoAAABaCAYAAAA4qEECAAAACXBIWXMAAAsTAAALEwEAmpwYAAACrUlEQVR4nO2dzY5MURRGrx4wIHgK+glE/LwACe8gjElPDEwMm4cw8BRtgIHwCIgBBtrPE2Cgl9zkiE5139al9rdrn117JTWp5J7zrS/3nnurKjk1DEVRFEVRFEVRFNkBjgIPgM/kZRvYHF2XWfQYYFXYXGbRmc/kWb4ss+iVYqiifaiiV7XooXOI5hUuUFavcIGyeoULlNUrXKCsXuECZfUKFyirV7hAWb3CBcrqtUgg5jwWI9ReEjxlMELtJcFTBiPUXhI8ZTBC7SXBUwYj1F4SPGUwQu0lIVygrF7hAmX1Chcoq1e4QFm9wgXK6hUuUFavRQIx57EYofaS4CmDEWovCZ4yGKH2kuApgxFqLwmeMhih9pLgKYMRai8J4QJl9QoXKKtXuEBZvcIFyuoVLlBWr3CBsnotEog5j8UItZcETxmMUHtJ8JTBCLWXBE8ZjFB7SfCUwQi1lwRPGYxQe0kIFyirV7hAWb3CBcrqFS5QVq9wgbJ6hQuU1StcoKxe4QJl9QoXqEevjnYA27bexWtqIqvxe98BbNPQfV+sxp+dLPqZLNvFiwmsxp+d7Cf9ccLA++TE2D9smt074Tf644yB91nXfe+AV/THDQPvWxNjv7Bpdu+ED+mPLQPvJ65bZgIX6ZNLCzhfPmDc87YN/510bVyX6I/XwKn/8D0NvJ0Yc3wCW5MU3SbfoE+ezlN2K/nZAePdlpXcAhwDPtAnbw6zjLTlYupMHnk/9iAtugW5DuzQL1vATWAdON5e6+29qRvfH34BV+Ul7yr7PqvJPbeSW9FHgMesFo9Gb9eid5V9t11OmdlpV7B/yTOFX+v4Bvkv3gFXhii0p5GNTp+z9+MjcGep/0xxiA81F9rH9ZfA1w6+9fsOfAKetx82zi19mSiKoiiKoiiKohic+Q3luscY+1orIAAAAABJRU5ErkJggg==" />
                                 </defs>
                             </svg>
+                            {{-- <button type="submit" class="btn btn-outline-light btn-sm me-2 btn-delete" data-name="{{ $user->email }}"><svg --}}
                             <button id="cetakStrukButton"
                                 style="display: block font-family: Inter;
                             font-size: 24px;
@@ -152,7 +143,7 @@
                             line-height: 29px;
                             letter-spacing: 0em;
                             text-align: left;border: none;background: #758BFF;color: #ffffff;"
-                                type="submit">Cetak Struk</button>
+                                type="submit" class="btn-delete" data-name="Cetak Struk">Check Out</button>
                         </div>
                     </div>
                 </form>
@@ -160,125 +151,29 @@
         </div>
     </div>
 @endsection
-@push('cetakstruk')
-<!-- Include the jsPDF library using a script tag -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-<script>
-    // Function to generate the PDF
-    function generatePDF() {
-        const doc = new jsPDF();
-
-        // Get the values to include in the PDF
-        const bayarInputValue = document.getElementById("bayarInput").value;
-        const totalValue = document.getElementById("Total").textContent;
-        const kembalianValue = document.getElementById("kembalian").textContent;
-
-        // Build the content for the PDF using string concatenation
-        const content =
-            "Bayar: " + bayarInputValue + "\n" +
-            "Total: " + totalValue + "\n" +
-            "Kembalian: " + kembalianValue;
-
-        // Add the content to the PDF
-        doc.text(content, 10, 10);
-
-        // Save the PDF
-        doc.save("struk.pdf");
-    }
-
-    // Function to initialize the button event listener
-    function initializeButtonEvent() {
-        const cetakStrukButton = document.getElementById("cetakStrukButton");
-        if (cetakStrukButton) {
-            cetakStrukButton.addEventListener("click", generatePDF);
-        }
-    }
-
-    // Add an event listener to the window object to call initializeButtonEvent after the script is loaded
-    window.addEventListener("load", initializeButtonEvent);
-</script>
-
-@endpush
-
-
-
-@push('scripts')
-    <!-- Letakkan skrip JavaScript di bawah table -->
-    <script>
-        const quantityInputs = document.querySelectorAll('.quantity-input');
-        const subtotalCells = document.querySelectorAll('.subtotal');
-
-        function updateSubtotal() {
-            const cartItems = document.querySelectorAll('.cart-items tr');
-
-            cartItems.forEach((item, index) => {
-                const input = item.querySelector('.quantity-input');
-                const hargaInput = item.querySelector('[data-harga]');
-
-                const quantity = parseFloat(input.value);
-                const harga = parseFloat(hargaInput.dataset.harga);
-
-                if (isNaN(quantity)) {
-                    subtotalCells[index].textContent = 'Invalid Quantity';
-                } else {
-                    const subtotal = quantity * harga;
-                    subtotalCells[index].textContent = subtotal;
-                }
-            });
-        }
-
-        // Panggil fungsi updateSubtotal saat input jumlah berubah
-        quantityInputs.forEach((input) => {
-            input.addEventListener('input', updateSubtotal);
-        });
-
-        // Panggil fungsi updateSubtotal saat halaman pertama kali dimuat
-        updateSubtotal();
-
-        function calculateSubtotal() {
-            var rows = document.querySelectorAll(".cart-items tr");
-            rows.forEach(function(row) {
-                var harga = parseFloat(row.querySelector("[data-harga]").getAttribute("data-harga"));
-                var jumlah = parseInt(row.querySelector(".quantity-input").value);
-                var subtotal = harga * jumlah;
-                row.querySelector(".subtotal").textContent = subtotal;
-            });
-        }
-
-        // Function to calculate and display total and kembalian
-        function calculateTotalAndKembalian() {
-            var total = 0;
-            var rows = document.querySelectorAll(".cart-items tr");
-            rows.forEach(function(row) {
-                total += parseFloat(row.querySelector(".subtotal").textContent);
-            });
-
-            var bayarInput = parseFloat(document.getElementById("bayarInput").value);
-            var kembalian = bayarInput - total;
-
-            document.getElementById("Total").textContent = "Total : " + total;
-            document.getElementById("kembalian").textContent = "Kembalian : " + kembalian;
-        }
-
-        // Calculate subtotal when the page loads
-        calculateSubtotal();
-
-        // Calculate and update total and kembalian when bayarInput changes
-        document.getElementById("bayarInput").addEventListener("input", function() {
-            calculateTotalAndKembalian();
-        });
-
-
-
-        // Function to calculate and update the total and kembalian based on user input
-    </script>
-@endpush
-
 @push('search')
     <script type="module">
         $(document).ready(function() {
             $('#employeeTable').DataTable();
+            $(".datatable").on("click", ".btn-delete", function(e) {
+                e.preventDefault();
+
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+
+                Swal.fire({
+                    title: "Are you sure want to delete\n" + name + "?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonClass: "bg-primary",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
+            });
         });
     </script>
 @endpush

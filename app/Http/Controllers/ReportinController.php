@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\inreportsExport;
 use App\Models\inreports;
 use App\Models\Listobat;
 use App\Models\Satuan;
@@ -33,10 +34,11 @@ class ReportinController extends Controller
      * Show the form for creating a new resource.
      */
     public function create()
-    {   $pageTitle = 'Nambah Stock';
+    {
+        $pageTitle = 'Nambah Stock';
         $satuan = Satuan::all();
         $obat = Listobat::all();
-        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan','obat'));
+        return view('admin.laporanmasuk.tambahstock', compact('pageTitle', 'satuan', 'obat'));
     }
 
     /**
@@ -117,5 +119,17 @@ class ReportinController extends Controller
     public function destroy(string $id)
     {
         //
+    }
+    public function exportExcel()
+    {
+        return Excel::download(new inreportsExport, 'Laporan Masuk.xlsx');
+    }
+    public function exportPdf()
+    {
+        $reportins = inreports::all();
+        $totalHargaSum = inreports::sum('total_harga');
+        $pdf = PDF::loadView('admin.laporanmasuk.export_pdf', compact('reportins','totalHargaSum'));
+
+        return $pdf->download('inreports.pdf');
     }
 }
