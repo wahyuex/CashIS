@@ -2,9 +2,11 @@
     $currentRouteName = Route::currentRouteName();
 @endphp
 
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #45B8A7">
+
     <div class="container">
-        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"><i class="bi-hexagon-fill me-2"></i> Data Master</a>
+        <a href=" {{ route('listobat') }} " class="navbar-brand mb-0 h1"> <img src="{{ Vite::asset('resources/images/logotextnew.png') }}" width="75" height="40"></a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -14,15 +16,21 @@
             <hr class="d-md-none text-white-50">
 
             <ul class="navbar-nav flex-row flex-wrap">
-                <li class="nav-item col-2 col-md-auto"><a href="{{ route('dataobat.index') }}"
-                        class="nav-link @if ($currentRouteName == 'dataobat.index') active @endif">Data Obat</a></li>
+                <li class="nav-item col-2 col-md-auto"><a href="{{ route('listobat') }}"
+                        class="nav-link @if ($currentRouteName == 'listobat') active @endif">Data Obat</a></li>
                 <li class="nav-item col-2 col-md-auto"><a href="{{ route('pengguna.index') }}"
                         class="nav-link @if ($currentRouteName == 'pengguna.index') active @endif">Pengguna</a></li>
+                <li class="nav-item col-2 col-md-auto"><a href="{{ route('laporanmasuk.index') }}"
+                        class="nav-link @if ($currentRouteName == 'laporanmasuk.index') active @endif">Laporan Masuk</a></li>
+                <li class="nav-item col-2 col-md-auto"><a href="{{ route('laporankeluar.index') }}"
+                        class="nav-link @if ($currentRouteName == 'laporankeluar.index') active @endif">Laporan Keluar</a></li>
+                <li class="nav-item col-2 col-md-auto"><a href="{{ route('resi.index') }}"
+                        class="nav-link @if ($currentRouteName == 'resi.index') active @endif">Resi Pemasok</a></li>
             </ul>
 
             <hr class="d-md-none text-white-50">
 
-            <li class="nav-item dropdown btn btn-outline-light my-2 ms-md-auto">
+            <li class="nav-item dropdown btn btn-success my-2 ms-md-auto">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <i class="bi bi-person-circle"></i>
@@ -33,11 +41,11 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href=""
+                    {{-- <a class="dropdown-item" href=""
                         onclick="event.preventDefault(); document.getElementById('my-profile').submit();">
                         <i class="bi bi-person-fill"></i>
-                        {{ __('My Profil') }}
-                    </a>
+                        {{ __('FAQ') }}
+                    </a> --}}
 
                     <form id="my-profile" action="" method="POST" class="d-none">
                         @csrf
@@ -65,6 +73,6 @@
 
 
 
-{{-- 
+{{--
 {{ route('profile') }}
 {{ route('profile') }} --}}
