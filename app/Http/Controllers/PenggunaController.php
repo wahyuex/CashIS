@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Users;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -98,7 +99,7 @@ class PenggunaController extends Controller
         $users = Users::find($id);
 
 
-        return view('pengguna.edit', compact('pageTitle', 'users', 'roles'));
+        return view('admin.pengguna.edit', compact('pageTitle', 'users', 'roles'));
     }
 
     /**
@@ -106,7 +107,20 @@ class PenggunaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $pengguna = User::find($id);
+        $pengguna->name = $request->name;
+        $pengguna->email = $request->email;
+        $pengguna->password = bcrypt($request->password);
+        $pengguna->role_id = $request->role;
+
+        // Tambahkan pesan untuk pengecekan
+        if ($pengguna->save()) {
+            // Data berhasil disimpan
+            return redirect()->route('pengguna.index')->with('success', 'Data pengguna berhasil disimpan.');
+        } else {
+            // Data gagal disimpan
+            return redirect()->route('pengguna.index')->with('error', 'Gagal menyimpan data pengguna.');
+        }
     }
 
     /**
