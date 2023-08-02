@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
-                        <a href="{{ route('pengguna.create') }}" class="btn btn-outline-success">
+                        <a href="{{ route('pengguna.create') }}" class="btn btn-success">
                             <i class="bi bi-download me-1"></i> Create Pengguna
                         </a>
                     </li>

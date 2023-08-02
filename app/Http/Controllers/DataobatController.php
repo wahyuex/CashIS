@@ -6,7 +6,6 @@ use App\Models\Listobat;
 use App\Models\Satuan;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
 
 class DataobatController extends Controller
 {
@@ -85,7 +84,7 @@ class DataobatController extends Controller
             return redirect()->route('dataobat.create')->with('error', 'Gagal menyimpan data pengguna.');
         }
 
-        
+
     }
 
     /**

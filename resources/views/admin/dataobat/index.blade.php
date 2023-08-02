@@ -8,19 +8,9 @@
             </div>
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
-                    <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportExcel') }}" class="btn btn-outline-success">
-                            <i class="bi bi-download me-1"></i> to Excel
-                        </a> --}}
-                    </li>
-                    <li class="list-inline-item">
-                        {{-- <a href="{{ route('admin.exportPdf') }}" class="btn btn-outline-danger">
-                            <i class="bi bi-download me-1"></i> to PDF
-                        </a> --}}
-                    </li>
                     <li class="list-inline-item">|</li>
                     <li class="list-inline-item">
-                        <a href="{{ route('dataobat.create') }}" class="btn btn-secondary">
+                        <a href="{{ route('dataobat.create') }}" class="btn btn-success">
                             <i class="bi bi-plus-circle me-1"></i> Tambah Obat
                         </a>
                     </li>

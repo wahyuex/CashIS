@@ -9,7 +9,7 @@
             <div class="col-lg-3 col-xl-6">
                 <ul class="list-inline mb-0 float-end">
                     <li class="list-inline-item">
-                        <a href="{{ route('laporanmasuk.create') }}" class="btn btn-outline-danger">
+                        <a href="{{ route('laporanmasuk.create') }}" class="btn btn-danger">
                             <i class="bi bi-download me-1"></i> Tambah Stock
                         </a>
                     </li>

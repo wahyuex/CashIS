@@ -2,9 +2,9 @@
     $currentRouteName = Route::currentRouteName();
 @endphp
 
-<nav class="navbar navbar-expand-md navbar-dark bg-primary">
+<nav class="navbar navbar-expand-md navbar-dark" style="background-color: #45B8A7">
     <div class="container">
-        <a href=" {{ route('homekasir') }} " class="navbar-brand mb-0 h1">CashIS</a>
+        <a href=" {{ route('homekasir') }} " class="navbar-brand mb-0 h1"> <img src="{{ Vite::asset('resources/images/logotextnew.png') }}" width="75" height="40"></a>
 
         <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
             <span class="navbar-toggler-icon"></span>
@@ -26,7 +26,7 @@
 
             <hr class="d-md-none text-white-50">
 
-            <li class="nav-item dropdown btn btn-outline-light my-2 ms-md-auto">
+            <li class="nav-item dropdown btn btn-success my-2 ms-md-auto">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                     <i class="bi bi-person-circle"></i>
@@ -37,7 +37,7 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href=""
+                    {{-- <a class="dropdown-item" href=""
                         onclick="event.preventDefault(); document.getElementById('my-profile').submit();">
                         <i class="bi bi-person-fill"></i>
                         {{ __('My Profil') }}
@@ -45,7 +45,7 @@
 
                     <form id="my-profile" action="" method="POST" class="d-none">
                         @csrf
-                    </form>
+                    </form> --}}
 
                     <a class="dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -69,6 +69,6 @@
 
 
 
-{{-- 
+{{--
 {{ route('profile') }}
 {{ route('profile') }} --}}
