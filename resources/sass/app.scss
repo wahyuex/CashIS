@@ -9,3 +9,16 @@
 
 // icons
 @import "bootstrap-icons/font/bootstrap-icons.css";
+
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px; /* Jarak antara tombol */
+}
+
+.button-container form {
+    margin: 0; /* Menghapus margin default pada form */
+}
+
+
+
