@@ -86,7 +86,7 @@ class DataobatController extends Controller
             return redirect()->route('dataobat.create')->with('error', 'Gagal menyimpan data pengguna.');
         }
 
-        
+
     }
 
     /**

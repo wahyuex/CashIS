@@ -36,7 +36,7 @@
             </div>
         </div>
     </section>
-    <section class="p-5 "style="background-color: black">
+    <section class="p-5 "style="background-color:#45B8A7;">
         <div class="container text-center">
             <div class="row text-center g-4">
                 <div class="col-md">

@@ -50,7 +50,7 @@
             </div>
             <div class="col">
                 <div style="display: flex ; margin-top: 20px;">
-                    <img src="{{ Vite::asset('resources\images\LOGO.png') }}" alt="image">
+                    <img src="{{ Vite::asset('resources\images\logo.png') }}" alt="image">
                     <h5 style="margin-left: 120px">Apotik Aasiyah <br>Jl. Mojoroto</h5>
                 </div>
                 <div style="display: flex ; justify-content: space-between; margin-top: ">
@@ -183,5 +183,5 @@
     // Function to generate the PDF
 
   </script>
-  
+
 @endpush --}}
