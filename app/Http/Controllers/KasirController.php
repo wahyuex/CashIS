@@ -6,9 +6,9 @@ use App\Models\Cart;
 use App\Models\Listobat;
 use App\Models\outreports;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
+// use Illuminate\Support\Str;
 use PDF;
-use RealRashid\SweetAlert\Facades\Alert;
+// use RealRashid\SweetAlert\Facades\Alert;
 class KasirController extends Controller
 {
     /**

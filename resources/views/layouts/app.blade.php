@@ -16,7 +16,7 @@
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
-<body style="background: linear-gradient(135deg, #FFF 0%, #45B8A7 100%);height: 655px;">
+<body style="background: linear-gradient(135deg, #FFF 0%, #45B8A7 100%);height: 745px;">
     <div id=" app">
         {{-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
